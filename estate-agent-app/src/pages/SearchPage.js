@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
-// IMPORTING DATA: Using local JSON to meet the "no server-side" constraint
 import propertyData from '../data/properties.json';
+// IMPORTING COMPONENT: Bringing in the SearchForm we just built
+import SearchForm from '../components/SearchForm';
 
 const SearchPage = () => {
-    // STATE MANAGEMENT: Storing properties in state for reactive UI updates
-    const [filteredProperties] = useState(propertyData.properties);
+    // We keep the filtered list in state to update the UI later
+    const [filteredProperties, setFilteredProperties] = useState(propertyData.properties);
+
+    // This function will eventually hold our search logic in Step 8
+    const handleSearch = (searchCriteria) => {
+        console.log("Search criteria received:", searchCriteria);
+        // For now, it just sits here so the form has a place to send data
+    };
 
     return (
         <div className="search-page">
@@ -13,15 +20,11 @@ const SearchPage = () => {
                 <p>Showing <strong>{filteredProperties.length}</strong> properties.</p>
             </header>
 
-            {/* Placeholder for Step 7 Search Form */}
+            {/* RENDER THE FORM: This makes the widgets appear on screen */}
             <section className="search-section">
-                <div className="search-placeholder">
-                    <h3>Search Filters</h3>
-                    <p>The Search Form with React Widgets will be added here in the next step.</p>
-                </div>
+                <SearchForm onSearch={handleSearch} />
             </section>
 
-            {/* RESULTS DISPLAY: Mapping JSON data to the UI */}
             <section className="results-grid">
                 {filteredProperties.map((property) => (
                     <div key={property.id} className="property-card">

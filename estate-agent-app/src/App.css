@@ -85,3 +85,57 @@
 .details-btn:hover {
   background-color: #004494;
 }
+
+/* --- Step 7: Search Form Styles --- */
+.search-form-container {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 40px;
+  border: 1px solid #eee;
+}
+
+.property-search-form {
+  display: grid;
+  /* Responsive grid: creates columns automatically based on screen width */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  align-items: end;
+}
+
+.filter-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #444;
+  font-size: 0.9rem;
+}
+
+.picker-row {
+  display: flex;
+  gap: 10px;
+}
+
+.custom-text-input {
+  width: 100%;
+  height: 38px;
+  padding: 0 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-submit-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.search-submit-btn:hover {
+  background-color: #218838;
+}
