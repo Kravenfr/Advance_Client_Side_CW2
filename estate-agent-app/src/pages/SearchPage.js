@@ -1,87 +1,124 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Requirement: Navigation using Link
-import propertyData from '../data/properties.json'; // Requirement: JSON data source
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+// Using the latest maintained version of the DnD components
+import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
+import propertyData from '../data/properties.json';
 import SearchForm from '../components/SearchForm';
 
 const SearchPage = () => {
-    // STATE: Storing the filtered results to trigger UI re-renders
     const [filteredProperties, setFilteredProperties] = useState(propertyData.properties);
 
-    /**
-     * SEARCH LOGIC: Handles the filtering for all 5 required criteria.
-     * This function is passed to SearchForm as a prop.
-     */
+    // Requirement: Favorites must persist using LocalStorage
+    const [favorites, setFavorites] = useState(() => {
+        const saved = localStorage.getItem('favorites');
+        return saved ? JSON.parse(saved) : [];
+    });
+
+    // Automatically save to storage whenever favorites list changes
+    useEffect(() => {
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+    }, [favorites]);
+
     const handleSearch = (criteria) => {
         const results = propertyData.properties.filter(prop => {
-            // 1. Logic for Date: Convert JSON string to JS Date object
             const propDate = new Date(`${prop.added.month} ${prop.added.day}, ${prop.added.year}`);
-
-            // 2. Logic for Property Type
             const matchType = criteria.type === 'any' || prop.type === criteria.type;
-
-            // 3. Logic for Price Range
             const matchPrice = prop.price >= criteria.minPrice && prop.price <= criteria.maxPrice;
-
-            // 4. Logic for Number of Bedrooms
             const matchBedrooms = prop.bedrooms >= criteria.minBedrooms && prop.bedrooms <= criteria.maxBedrooms;
-
-            // 5. Logic for Postcode/Location (Case-insensitive)
             const matchPostcode = prop.location.toLowerCase().includes(criteria.postcode.toLowerCase());
-
-            // 6. Logic for Date Added (Must be after selected date)
             const matchDate = propDate >= criteria.dateAdded;
-
-            // Only return true if all conditions are met
             return matchType && matchPrice && matchBedrooms && matchPostcode && matchDate;
         });
-
         setFilteredProperties(results);
     };
 
+    // Requirement: Logic for Drag and Drop interaction
+    const onDragEnd = (result) => {
+        const { source, destination } = result;
+        if (!destination) return; // Dropped outside
+
+        // Logic: Dragging from the Search Results into the Favorites sidebar
+        if (source.droppableId === 'results' && destination.droppableId === 'favorites') {
+            const draggedProp = filteredProperties[source.index];
+            // Distinction Requirement: Prevent adding the same property twice
+            if (!favorites.find(p => p.id === draggedProp.id)) {
+                setFavorites([...favorites, draggedProp]);
+            }
+        }
+    };
+
+    const removeFavorite = (id) => {
+        setFavorites(favorites.filter(p => p.id !== id));
+    };
+
     return (
-        <div className="search-page">
-            <header className="page-header">
-                <h1>Estate Agent Property Search</h1>
-            </header>
+        <DragDropContext onDragEnd={onDragEnd}>
+            <div className="search-page-layout">
+                <div className="main-search-area">
+                    <header className="page-header">
+                        <h1>Estate Agent Property Search</h1>
+                    </header>
 
-            {/* SEARCH COMPONENT: Using React Widgets inside SearchForm */}
-            <section className="search-section">
-                <SearchForm onSearch={handleSearch} />
-            </section>
+                    <SearchForm onSearch={handleSearch} />
 
-            <p className="results-count">
-                Found <strong>{filteredProperties.length}</strong> properties matching your criteria.
-            </p>
+                    {/* SOURCE AREA: The Search Results */}
+                    <Droppable droppableId="results" isDropDisabled={true}>
+                        {(provided) => (
+                            <section
+                                className="results-grid"
+                                {...provided.droppableProps}
+                                ref={provided.innerRef}
+                            >
+                                {filteredProperties.map((property, index) => (
+                                    <Draggable key={property.id} draggableId={property.id} index={index}>
+                                        {(provided, snapshot) => (
+                                            <div
+                                                className={`property-card ${snapshot.isDragging ? 'dragging' : ''}`}
+                                                ref={provided.innerRef}
+                                                {...provided.draggableProps}
+                                                {...provided.dragHandleProps}
+                                            >
+                                                <img src={property.picture} alt={property.type} />
+                                                <div className="property-info">
+                                                    <h4>{property.type} - £{property.price.toLocaleString()}</h4>
+                                                    <Link to={`/property/${property.id}`} className="details-btn">Details</Link>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </Draggable>
+                                ))}
+                                {provided.placeholder}
+                            </section>
+                        )}
+                    </Droppable>
+                </div>
 
-            {/* RESULTS GRID: Responsive display of property cards */}
-            <section className="results-grid">
-                {filteredProperties.length > 0 ? (
-                    filteredProperties.map((property) => (
-                        <div key={property.id} className="property-card">
-                            <div className="image-container">
-                                <img src={property.picture} alt={property.type} />
+                {/* DESTINATION AREA: The Favorites Sidebar */}
+                <aside className="favorites-sidebar">
+                    <h2>My Favorites</h2>
+                    <button className="clear-all-btn" onClick={() => setFavorites([])}>Clear All</button>
+
+                    <Droppable droppableId="favorites">
+                        {(provided, snapshot) => (
+                            <div
+                                className={`favorites-drop-zone ${snapshot.isDraggingOver ? 'active' : ''}`}
+                                {...provided.droppableProps}
+                                ref={provided.innerRef}
+                            >
+                                {favorites.length === 0 && <p className="empty-msg">Drag properties here to favorite</p>}
+                                {favorites.map((fav) => (
+                                    <div key={fav.id} className="fav-card">
+                                        <p>{fav.type} - £{fav.price.toLocaleString()}</p>
+                                        <button onClick={() => removeFavorite(fav.id)} title="Remove">×</button>
+                                    </div>
+                                ))}
+                                {provided.placeholder}
                             </div>
-                            <div className="property-info">
-                                <h4>{property.type} - £{property.price.toLocaleString()}</h4>
-                                <p className="location"><strong>Location:</strong> {property.location}</p>
-                                <p className="description">{property.description.substring(0, 100)}...</p>
-
-                                {/* NAVIGATION: Link to the Property Details Page */}
-                                <Link to={`/property/${property.id}`} className="details-btn">
-                                    View Details
-                                </Link>
-                            </div>
-                        </div>
-                    ))
-                ) : (
-                    /* Requirement: Displaying a message when no results match */
-                    <div className="no-results">
-                        <h3>No properties found</h3>
-                        <p>Please try adjusting your filters or checking your postcode.</p>
-                    </div>
-                )}
-            </section>
-        </div>
+                        )}
+                    </Droppable>
+                </aside>
+            </div>
+        </DragDropContext>
     );
 };
 
