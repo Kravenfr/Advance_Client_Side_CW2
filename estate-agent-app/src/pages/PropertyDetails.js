@@ -1,49 +1,81 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 import propertyData from '../data/properties.json';
 
 const PropertyDetails = () => {
-    // Requirement: Use URL parameters to identify the selected property
     const { id } = useParams();
-
-    // Logic to find the property in our local JSON data
     const property = propertyData.properties.find(p => p.id === id);
 
-    // Error handling if a user manually types a wrong ID in the URL
-    if (!property) {
-        return (
-            <div className="property-details-page">
-                <h2>Property not found</h2>
-                <Link to="/" className="back-link">Return to Search</Link>
-            </div>
-        );
-    }
+    // State to handle which image is currently being viewed in the large hero area
+    const [mainImage, setMainImage] = useState(property ? property.picture : '');
+
+    if (!property) return <div className="search-page"><h2>Property not found</h2></div>;
 
     return (
         <div className="property-details-page">
             <header className="details-header">
-                <Link to="/" className="back-link">← Back to Search Results</Link>
+                <Link to="/" className="back-link">← Back to Search</Link>
                 <h1>{property.type} - {property.location}</h1>
             </header>
 
             <div className="details-layout">
-                <section className="image-gallery">
-                    {/* Multimedia Requirement: Showing the main property image */}
-                    <img src={property.picture} alt={property.type} className="hero-image" />
+                {/* MULTIMEDIA SECTION: Hero image + Thumbnails */}
+                <section className="multimedia-section">
+                    <img src={mainImage} alt="Property" className="hero-image" />
+                    <div className="thumbnail-grid">
+                        {/* If you added the images array to JSON, map through it here */}
+                        {property.images && property.images.map((img, index) => (
+                            <img
+                                key={index}
+                                src={img}
+                                alt={`View ${index}`}
+                                className={mainImage === img ? "thumb active" : "thumb"}
+                                onClick={() => setMainImage(img)}
+                            />
+                        ))}
+                    </div>
                 </section>
 
-                <section className="property-specs">
+                {/* ORGANIZATION SECTION: Tabs for Description/Floorplan/Map */}
+                <section className="info-tabs-section">
                     <h2 className="details-price">£{property.price.toLocaleString()}</h2>
-                    <div className="specs-grid">
-                        <div className="spec-item"><strong>Bedrooms:</strong> {property.bedrooms}</div>
-                        <div className="spec-item"><strong>Tenure:</strong> {property.tenure}</div>
-                        <div className="spec-item"><strong>Added on:</strong> {property.added.day} {property.added.month} {property.added.year}</div>
-                    </div>
 
-                    <div className="description-section">
-                        <h3>Description</h3>
-                        <p>{property.description}</p>
-                    </div>
+                    <Tabs>
+                        <TabList>
+                            <Tab>Description</Tab>
+                            <Tab>Floorplan</Tab>
+                            <Tab>Map</Tab>
+                        </TabList>
+
+                        <TabPanel>
+                            <div className="tab-content">
+                                <p>{property.description}</p>
+                                <div className="specs-list">
+                                    <p><strong>Bedrooms:</strong> {property.bedrooms}</p>
+                                    <p><strong>Tenure:</strong> {property.tenure}</p>
+                                </div>
+                            </div>
+                        </TabPanel>
+
+                        <TabPanel>
+                            <div className="tab-content">
+                                <div className="placeholder-box">
+                                    <p>Floorplan Image (Multimedia Requirement)</p>
+                                </div>
+                            </div>
+                        </TabPanel>
+
+                        <TabPanel>
+                            <div className="tab-content">
+                                <div className="placeholder-box">
+                                    {/* Later we can add a Google Maps iframe here */}
+                                    <p>Interactive Google Map</p>
+                                </div>
+                            </div>
+                        </TabPanel>
+                    </Tabs>
                 </section>
             </div>
         </div>
