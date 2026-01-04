@@ -1,34 +1,40 @@
 import React, { useState } from 'react';
-import propertyData from '../data/properties.json';
+import { Link } from 'react-router-dom'; // Requirement: Navigation using Link
+import propertyData from '../data/properties.json'; // Requirement: JSON data source
 import SearchForm from '../components/SearchForm';
 
 const SearchPage = () => {
-    // We keep the filtered list in state to update the UI instantly
+    // STATE: Storing the filtered results to trigger UI re-renders
     const [filteredProperties, setFilteredProperties] = useState(propertyData.properties);
 
+    /**
+     * SEARCH LOGIC: Handles the filtering for all 5 required criteria.
+     * This function is passed to SearchForm as a prop.
+     */
     const handleSearch = (criteria) => {
-        // We use the .filter() method to check every property against the user's input
         const results = propertyData.properties.filter(prop => {
-
-            // 1. Convert the JSON date (month/day/year) into a real JavaScript Date object
+            // 1. Logic for Date: Convert JSON string to JS Date object
             const propDate = new Date(`${prop.added.month} ${prop.added.day}, ${prop.added.year}`);
 
-            // 2. Logic for each of the 5 required search criteria
+            // 2. Logic for Property Type
             const matchType = criteria.type === 'any' || prop.type === criteria.type;
+
+            // 3. Logic for Price Range
             const matchPrice = prop.price >= criteria.minPrice && prop.price <= criteria.maxPrice;
+
+            // 4. Logic for Number of Bedrooms
             const matchBedrooms = prop.bedrooms >= criteria.minBedrooms && prop.bedrooms <= criteria.maxBedrooms;
 
-            // Postcode: We check if the search text is inside the location string
+            // 5. Logic for Postcode/Location (Case-insensitive)
             const matchPostcode = prop.location.toLowerCase().includes(criteria.postcode.toLowerCase());
 
-            // Date: Only show properties added AFTER the selected date
+            // 6. Logic for Date Added (Must be after selected date)
             const matchDate = propDate >= criteria.dateAdded;
 
-            // Only return true if the property matches ALL conditions
+            // Only return true if all conditions are met
             return matchType && matchPrice && matchBedrooms && matchPostcode && matchDate;
         });
 
-        // Update the screen with the new results
         setFilteredProperties(results);
     };
 
@@ -38,14 +44,16 @@ const SearchPage = () => {
                 <h1>Estate Agent Property Search</h1>
             </header>
 
+            {/* SEARCH COMPONENT: Using React Widgets inside SearchForm */}
             <section className="search-section">
                 <SearchForm onSearch={handleSearch} />
             </section>
 
             <p className="results-count">
-                Found <strong>{filteredProperties.length}</strong> matching properties.
+                Found <strong>{filteredProperties.length}</strong> properties matching your criteria.
             </p>
 
+            {/* RESULTS GRID: Responsive display of property cards */}
             <section className="results-grid">
                 {filteredProperties.length > 0 ? (
                     filteredProperties.map((property) => (
@@ -57,15 +65,19 @@ const SearchPage = () => {
                                 <h4>{property.type} - £{property.price.toLocaleString()}</h4>
                                 <p className="location"><strong>Location:</strong> {property.location}</p>
                                 <p className="description">{property.description.substring(0, 100)}...</p>
-                                <button className="details-btn">View Details</button>
+
+                                {/* NAVIGATION: Link to the Property Details Page */}
+                                <Link to={`/property/${property.id}`} className="details-btn">
+                                    View Details
+                                </Link>
                             </div>
                         </div>
                     ))
                 ) : (
-                    /* Requirement: Displaying a message when no results are found */
+                    /* Requirement: Displaying a message when no results match */
                     <div className="no-results">
-                        <h3>No results found</h3>
-                        <p>Try adjusting your filters or checking your postcode.</p>
+                        <h3>No properties found</h3>
+                        <p>Please try adjusting your filters or checking your postcode.</p>
                     </div>
                 )}
             </section>
