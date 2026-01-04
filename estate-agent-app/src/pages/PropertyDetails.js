@@ -68,10 +68,20 @@ const PropertyDetails = () => {
                         </TabPanel>
 
                         <TabPanel>
-                            <div className="tab-content">
-                                <div className="placeholder-box">
-                                    {/* Later we can add a Google Maps iframe here */}
-                                    <p>Interactive Google Map</p>
+                            <div className="tab-content map-container">
+                                {/* The 'q=' part of the URL is where we inject the dynamic location */}
+                                <iframe
+                                    title="Property Location"
+                                    width="100%"
+                                    height="450"
+                                    style={{ border: 0, borderRadius: '8px' }}
+                                    src={`https://www.google.com/maps/embed/v1/place?key=YOUR_FREE_EMBED_URL_OR_SEARCH_QUERY&q=${encodeURIComponent(property.location)}&output=embed`}
+                                    allowFullScreen
+                                    loading="lazy"
+                                ></iframe>
+
+                                <div style={{ marginTop: '10px', textAlign: 'center' }}>
+                                    <strong>Location:</strong> {property.location}
                                 </div>
                             </div>
                         </TabPanel>

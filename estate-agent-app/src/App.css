@@ -1,365 +1,406 @@
-.search-page {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* setting up my colors here so i don't have to hunt for hex codes later */
+:root {
+  --primary: #000000;
+  --primary-dark: #1a1a1a;
+  --accent: #666666;
+  --border: #000000;
+  --text-main: #000000;
+  --text-light: #444444;
+  --bg-body: #ffffff;
+  --bg-card: #ffffff;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-hover: 0 8px 16px rgba(0, 0, 0, 0.25);
+  --radius: 0px;
+  --transition: all 0.2s ease-in-out;
+}
+
+body {
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  margin: 0;
+  font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+/* making headers bold and uppercase to give it that professional estate agent look */
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 800;
+  color: var(--text-main);
+  margin-top: 0;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+}
+
+a {
+  color: var(--text-main);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: var(--transition);
+}
+
+a:hover {
+  border-bottom-color: var(--primary);
 }
 
 .page-header {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-
-.search-placeholder {
-  background-color: #f8f9fa;
-  border: 2px dashed #ddd;
-  padding: 20px;
-  border-radius: 8px;
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.results-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 30px;
-}
-
-
-.property-card {
+  padding: 3rem 0;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 2rem;
   background: white;
-  border: 1px solid #eee;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
 }
 
-.property-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+.page-header h1 {
+  font-size: 3rem;
+  margin: 0;
+  letter-spacing: -1px;
 }
 
-.image-container img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-
-.property-info {
-  padding: 20px;
-}
-
-.property-info h4 {
-  margin: 0 0 10px 0;
-  color: #333;
-  font-size: 1.2rem;
-}
-
-.location {
-  color: #666;
-  font-size: 0.9rem;
-  margin-bottom: 10px;
-}
-
-.description {
-  color: #777;
-  font-size: 0.85rem;
-  line-height: 1.5;
-  margin-bottom: 20px;
-}
-
-
-.details-btn {
-  width: 100%;
-  padding: 12px;
-  background-color: #0056b3;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.details-btn:hover {
-  background-color: #004494;
-}
-
-/* --- Step 7: Search Form Styles --- */
+/* used a thick black shadow here to make the search box pop out from the page */
 .search-form-container {
-  background: #ffffff;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 2px solid var(--border);
+  padding: 30px;
   margin-bottom: 40px;
-  border: 1px solid #eee;
+  background: white;
+  box-shadow: 8px 8px 0px rgba(0, 0, 0, 1);
 }
 
+/* using grid for the form so the filters align themselves automatically */
 .property-search-form {
   display: grid;
-  /* Responsive grid: creates columns automatically based on screen width */
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
+  gap: 25px;
   align-items: end;
 }
 
 .filter-group label {
   display: block;
-  font-weight: 600;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
   margin-bottom: 8px;
-  color: #444;
-  font-size: 0.9rem;
+  letter-spacing: 1px;
 }
 
-.picker-row {
-  display: flex;
-  gap: 10px;
-}
-
-.custom-text-input {
-  width: 100%;
-  height: 38px;
-  padding: 0 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+/* forcing the react-widgets to have sharp corners and black borders */
+.custom-text-input,
+.rw-widget-picker {
+  border: 2px solid var(--border) !important;
+  border-radius: 0 !important;
+  font-size: 1rem;
 }
 
 .search-submit-btn {
-  background-color: #28a745;
+  background: var(--primary);
   color: white;
-  border: none;
-  padding: 12px;
-  border-radius: 6px;
-  font-weight: bold;
+  border: 2px solid var(--primary);
+  padding: 12px 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  width: 100%;
+  height: 46px;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: var(--transition);
 }
 
 .search-submit-btn:hover {
-  background-color: #218838;
-}
-
-/* --- Step 9: Property Details Styling --- */
-.property-details-page {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  font-family: sans-serif;
-}
-
-.back-link {
-  text-decoration: none;
-  color: #007bff;
-  font-weight: 600;
-  margin-bottom: 20px;
-  display: inline-block;
-}
-
-.details-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  /* Two-column layout for desktop */
-  gap: 40px;
-  margin-top: 20px;
-}
-
-.hero-image {
-  width: 100%;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.details-price {
-  font-size: 2.5rem;
-  color: #28a745;
-  margin-top: 0;
-}
-
-.specs-grid {
-  display: flex;
-  gap: 20px;
-  background: #f8f9fa;
-  padding: 15px;
-  border-radius: 8px;
-  margin-bottom: 25px;
-}
-
-.description-section h3 {
-  border-bottom: 2px solid #eee;
-  padding-bottom: 10px;
-}
-
-.description-section p {
-  line-height: 1.8;
-  color: #555;
-}
-
-/* Responsive adjustment for mobile */
-@media (max-width: 768px) {
-  .details-layout {
-    grid-template-columns: 1fr;
-  }
-}
-
-
-/* Step 10: Gallery and Tabs */
-.thumbnail-grid {
-  display: flex;
-  gap: 10px;
-  margin-top: 15px;
-  overflow-x: auto;
-}
-
-.thumb {
-  width: 80px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 4px;
-  cursor: pointer;
-  opacity: 0.6;
-  transition: 0.3s;
-  border: 2px solid transparent;
-}
-
-.thumb:hover,
-.thumb.active {
-  opacity: 1;
-  border-color: #007bff;
-}
-
-.react-tabs__tab--selected {
-  background: #007bff !important;
-  color: white !important;
-}
-
-.tab-content {
-  padding: 20px;
-  border: 1px solid #aaa;
-  border-top: none;
   background: white;
-  border-radius: 0 0 8px 8px;
+  color: var(--primary);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
-.placeholder-box {
-  height: 250px;
-  background: #f0f0f0;
-  border: 2px dashed #ccc;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #888;
-}
-
-
-/* Step 10: Gallery and Tabs */
-.thumbnail-grid {
-  display: flex;
-  gap: 10px;
-  margin-top: 15px;
-  overflow-x: auto;
-}
-
-.thumb {
-  width: 80px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 4px;
-  cursor: pointer;
-  opacity: 0.6;
-  transition: 0.3s;
-  border: 2px solid transparent;
-}
-
-.thumb:hover,
-.thumb.active {
-  opacity: 1;
-  border-color: #007bff;
-}
-
-.react-tabs__tab--selected {
-  background: #007bff !important;
-  color: white !important;
-}
-
-.tab-content {
-  padding: 20px;
-  border: 1px solid #aaa;
-  border-top: none;
-  background: white;
-  border-radius: 0 0 8px 8px;
-}
-
-.placeholder-box {
-  height: 250px;
-  background: #f0f0f0;
-  border: 2px dashed #ccc;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #888;
-}
-
-
+/* using flex to keep the property list on the left and favorites on the right */
 .search-page-layout {
   display: flex;
-  gap: 30px;
-  padding: 20px;
+  gap: 40px;
   max-width: 1400px;
   margin: 0 auto;
+  padding: 20px;
 }
 
+/* main area takes up way more space than the sidebar */
 .main-search-area {
   flex: 3;
 }
 
+/* sticky sidebar is handy so the user sees their favorites while scrolling */
 .favorites-sidebar {
   flex: 1;
-  background: #f1f3f5;
+  min-width: 280px;
+  background: white;
+  border: 2px solid var(--border);
   padding: 20px;
-  border-radius: 12px;
   height: fit-content;
   position: sticky;
   top: 20px;
-  min-height: 500px;
+  box-shadow: 6px 6px 0px rgba(0, 0, 0, 1);
 }
 
-.favorites-drop-zone {
-  min-height: 300px;
-  border: 2px dashed #adb5bd;
-  border-radius: 8px;
-  padding: 10px;
-  margin-top: 15px;
-}
-
-.favorites-drop-zone.active {
-  background: #e7f5ff;
-  border-color: #339af0;
-}
-
-.fav-card {
-  background: white;
-  padding: 12px;
-  margin-bottom: 10px;
-  border-radius: 6px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+.favorites-sidebar h2 {
+  border-bottom: 2px solid #000;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .clear-all-btn {
-  width: 100%;
-  background: #fa5252;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  background: black;
   color: white;
   border: none;
-  padding: 8px;
-  border-radius: 4px;
+  padding: 5px 10px;
+  float: right;
+  margin-top: -50px;
+  cursor: pointer;
+}
+
+/* responsive grid so cards wrap when the screen gets smaller */
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+.property-card {
+  border: 2px solid var(--border);
+  background: white;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.property-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 8px 8px 0px rgba(0, 0, 0, 1);
+}
+
+/* standardized images to 4:3 and made them grayscale for the theme */
+.property-card img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border-bottom: 2px solid var(--border);
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+/* clearing the grayscale on hover to show the house in full color */
+.property-card:hover img {
+  filter: grayscale(0%);
+}
+
+.property-info {
+  padding: 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.property-info h4 {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  min-height: 3rem;
+}
+
+.details-btn {
+  display: block;
+  text-align: center;
+  background: white;
+  color: black;
+  border: 2px solid black;
+  padding: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: auto;
+  transition: var(--transition);
+}
+
+.details-btn:hover {
+  background: black;
+  color: white;
+}
+
+/* used a dashed border here so the drop zone actually looks like a drop zone */
+.favorites-drop-zone {
+  min-height: 200px;
+  border: 2px dashed #000;
+  background: #f9f9f9;
+  padding: 10px;
+}
+
+.favorites-drop-zone.active {
+  background: #e0e0e0;
+  border-style: solid;
+}
+
+.fav-card {
+  background: black;
+  color: white;
+  padding: 12px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fav-card button {
+  background: white;
+  color: black;
+  border: none;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
   cursor: pointer;
   font-weight: bold;
 }
 
-.property-card.dragging {
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  transform: scale(1.02);
+.property-details-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.details-header {
+  margin-bottom: 30px;
+  border-bottom: 2px solid black;
+  padding-bottom: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+/* forced the image and details side-by-side using grid columns */
+.details-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 50px;
+  align-items: start;
+}
+
+.hero-image {
+  width: 100%;
+  aspect-ratio: 16/10;
+  object-fit: cover;
+  border: 2px solid black;
+  box-shadow: 8px 8px 0px rgba(0, 0, 0, 1);
+  margin-bottom: 20px;
+  filter: grayscale(100%);
+}
+
+.thumbnail-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.thumb {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 2px solid #ccc;
+  cursor: pointer;
+  filter: grayscale(100%);
+  opacity: 0.7;
+  transition: all 0.2s;
+}
+
+.thumb:hover,
+.thumb.active {
+  border-color: black;
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.details-price {
+  font-size: 3rem;
+  font-weight: 900;
+  margin: 0 0 30px 0;
+  color: black;
+}
+
+/* customized the react-tabs tabs to match the black and white theme */
+.react-tabs__tab-list {
+  border-bottom: 2px solid black !important;
+  margin: 0 !important;
+  display: flex;
+  gap: 5px;
+}
+
+.react-tabs__tab {
+  border: 2px solid transparent !important;
+  background: white !important;
+  color: #888 !important;
+  text-transform: uppercase;
+  font-weight: 700 !important;
+  padding: 10px 20px !important;
+  bottom: -2px !important;
+}
+
+.react-tabs__tab--selected {
+  border: 2px solid black !important;
+  border-bottom: 2px solid white !important;
+  color: black !important;
+}
+
+.tab-content {
+  border: 2px solid black;
+  border-top: none;
+  padding: 30px;
+  background: white;
+}
+
+/* stacking columns on top of each other when the screen is too narrow */
+@media (max-width: 900px) {
+
+  .details-layout,
+  .search-page-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* overriding the 3rd party widget colors so they don't use default blues/purples */
+.rw-widget-picker,
+.rw-widget-container {
+  border-color: black !important;
+  border-radius: 0 !important;
+}
+
+.rw-btn {
+  color: black !important;
+}
+
+.rw-state-selected,
+.rw-list-option.rw-state-selected,
+.rw-list-option.rw-state-selected:hover {
+  background-color: black !important;
+  color: white !important;
+  border-color: black !important;
+}
+
+.rw-state-focus {
+  border-color: black !important;
+  box-shadow: none !important;
+}
+
+.rw-popup {
+  border: 2px solid black !important;
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 1) !important;
+  border-radius: 0 !important;
+}
+
+.rw-calendar-btn.rw-state-selected {
+  background: black !important;
+  color: white !important;
 }

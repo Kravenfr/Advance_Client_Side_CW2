@@ -6,80 +6,14 @@
             "bedrooms": 3,
             "price": 750000,
             "tenure": "Freehold",
-            "description": "Attractive three bedroom semi-detached family home situated within 0.5 miles of Petts Wood station with fast trains to London and within easy walking distance of local shops, schools, bus routes and National Trust woodland. The property comprises; two receptions, fitted 18'9 x 10'1 kitchen/breakfast room and conservatory. The property also benefits from having a utility room and cloakroom. To the first floor there are three bedrooms and a family bathroom with separate WC. Additional features include double glazing, gas central heating and a well presented interior...",
-            "location": "Petts Wood Road, Petts Wood, Orpington BR5",
-            "picture": "images/prop1pic1small.jpg",
+            "description": "Attractive three bedroom semi-detached family home situated within 0.5 miles of Petts Wood station with fast trains to London. The property comprises two receptions, a fitted kitchen/breakfast room, and a conservatory. It also benefits from a utility room and a well-presented interior.",
+            "location": "Petts Wood Road, Orpington BR5",
+            "picture": "/img/prop1/1.jpg",
             "images": [
-                "img/prop1/pic1.jpg",
-                "img/prop1/pic2.jpg",
-                "img/prop1/pic3.jpg",
-                "img/prop1/pic4.jpg"
-            ],
-            "url": "properties/prop1.html",
-            "added": {
-                "month": "October",
-                "day": 12,
-                "year": 2022
-            }
-        },
-        {
-            "id": "prop2",
-            "type": "Flat",
-            "bedrooms": 2,
-            "price": 399995,
-            "tenure": "Freehold",
-            "description": "Presented in excellent decorative order throughout is this two double bedroom, two bathroom, garden flat. <br>The modern fitted kitchen is open plan to the living room which boasts solid wooden floors and includes integrated appliances including a dishwasher & a washing machine. This large open plan benefits from bi folding doors onto a secluded private courtyard garden. Both bedrooms are double sized, and the family bathroom boasts a matching three piece suite a shower attachment over the bath. There is also a separate wet room. There are walnut doors throughout and wiring for Sky TV/aerial points in the living room/kitchen and both bedrooms.<br>This apartment being only five years old, is still under a 10 year building guarantee...",
-            "location": "Crofton Road Orpington BR6",
-            "picture": "images/prop2pic1small.jpg",
-            "images": [
-                "img/prop1/pic1.jpg",
-                "img/prop1/pic2.jpg",
-                "img/prop1/pic3.jpg",
-                "img/prop1/pic4.jpg"
-            ],
-            "url": "properties/prop2.html",
-            "added": {
-                "month": "September",
-                "day": 14,
-                "year": 2022
-            }
-        },
-        {
-            "id": "prop3",
-            "type": "House",
-            "bedrooms": 3,
-            "price": 700000,
-            "tenure": "Freehold",
-            "description": "Attractive three bedroom semi-detached family home situated within 0.5 miles of Petts Wood station with fast trains to London and within easy walking distance of local shops, schools, bus routes and National Trust woodland. The property comprises; two receptions, fitted 18'9 x 10'1 kitchen/breakfast room and conservatory. The property also benefits from having a utility room and cloakroom. To the first floor there are three bedrooms and a family bathroom with separate WC. Additional features include double glazing, gas central heating and a well presented interior...",
-            "location": "Petts Wood Road, Petts Wood, Orpington BR5",
-            "picture": "images/prop1pic1small.jpg",
-            "images": [
-                "img/prop1/pic1.jpg",
-                "img/prop1/pic2.jpg",
-                "img/prop1/pic3.jpg",
-                "img/prop1/pic4.jpg"
-            ],
-            "url": "properties/prop1.html",
-            "added": {
-                "month": "November",
-                "day": 12,
-                "year": 2023
-            }
-        },
-        {
-            "id": "prop4",
-            "type": "House",
-            "bedrooms": 3,
-            "price": 750000,
-            "tenure": "Freehold",
-            "description": "Attractive three bedroom semi-detached family home situated within 0.5 miles of Petts Wood station with fast trains to London and within easy walking distance of local shops, schools, bus routes and National Trust woodland. The property comprises; two receptions, fitted 18'9 x 10'1 kitchen/breakfast room and conservatory. The property also benefits from having a utility room and cloakroom. To the first floor there are three bedrooms and a family bathroom with separate WC. Additional features include double glazing, gas central heating and a well presented interior...",
-            "location": "Petts Wood Road, Petts Wood, Orpington BR5",
-            "picture": "images/prop1pic1small.jpg",
-            "images": [
-                "img/prop1/pic1.jpg",
-                "img/prop1/pic2.jpg",
-                "img/prop1/pic3.jpg",
-                "img/prop1/pic4.jpg"
+                "/img/prop1/1.jpg",
+                "/img/prop1/2.jpg",
+                "/img/prop1/3.jpg",
+                "/img/prop1/4.jpg"
             ],
             "url": "properties/prop1.html",
             "added": {
@@ -89,69 +23,135 @@
             }
         },
         {
-            "id": "prop5",
+            "id": "prop2",
             "type": "Flat",
-            "bedrooms": 3,
-            "price": 750000,
-            "tenure": "Freehold",
-            "description": "Attractive three bedroom semi-detached family home situated within 0.5 miles of Petts Wood station with fast trains to London and within easy walking distance of local shops, schools, bus routes and National Trust woodland. The property comprises; two receptions, fitted 18'9 x 10'1 kitchen/breakfast room and conservatory. The property also benefits from having a utility room and cloakroom. To the first floor there are three bedrooms and a family bathroom with separate WC. Additional features include double glazing, gas central heating and a well presented interior...",
-            "location": "Petts Wood Road, Petts Wood, Orpington BR5",
-            "picture": "images/prop1pic1small.jpg",
+            "bedrooms": 2,
+            "price": 399995,
+            "tenure": "Leasehold",
+            "description": "Excellent two-bedroom, two-bathroom garden flat. Features a modern open-plan kitchen and living room with wooden floors and bi-folding doors opening onto a secluded private courtyard. Still under a 10-year building guarantee.",
+            "location": "Crofton Road, Orpington BR6",
+            "picture": "/img/prop2/1.jpg",
             "images": [
-                "img/prop1/pic1.jpg",
-                "img/prop1/pic2.jpg",
-                "img/prop1/pic3.jpg",
-                "img/prop1/pic4.jpg"
+                "/img/prop2/1.jpg",
+                "/img/prop2/2.jpg",
+                "/img/prop2/3.jpg",
+                "/img/prop2/4.jpg"
             ],
-            "url": "properties/prop1.html",
+            "url": "properties/prop2.html",
             "added": {
-                "month": "October",
-                "day": 12,
-                "year": 2012
+                "month": "September",
+                "day": 14,
+                "year": 2024
+            }
+        },
+        {
+            "id": "prop3",
+            "type": "House",
+            "bedrooms": 4,
+            "price": 850000,
+            "tenure": "Freehold",
+            "description": "Spacious 4-bedroom detached house featuring a large south-facing garden and a double garage. Located in a quiet cul-de-sac, this property offers a luxury master suite and a modern kitchen with integrated high-end appliances.",
+            "location": "Highview Way, Sevenoaks TN13",
+            "picture": "/img/prop3/1.jpg",
+            "images": [
+                "/img/prop3/1.jpg",
+                "/img/prop3/2.jpg",
+                "/img/prop3/3.jpg",
+                "/img/prop3/4.jpg"
+            ],
+            "url": "properties/prop3.html",
+            "added": {
+                "month": "January",
+                "day": 5,
+                "year": 2025
+            }
+        },
+        {
+            "id": "prop4",
+            "type": "Flat",
+            "bedrooms": 1,
+            "price": 275000,
+            "tenure": "Leasehold",
+            "description": "A stylish 1-bedroom apartment located in the heart of the town center. Perfect for first-time buyers or investors, featuring a private balcony, concierge service, and access to a residents-only rooftop terrace.",
+            "location": "Station Road, Bromley BR1",
+            "picture": "/img/prop4/1.jpg",
+            "images": [
+                "/img/prop4/1.jpg",
+                "/img/prop4/2.jpg",
+                "/img/prop4/3.jpg",
+                "/img/prop4/4.jpg"
+            ],
+            "url": "properties/prop4.html",
+            "added": {
+                "month": "December",
+                "day": 20,
+                "year": 2024
+            }
+        },
+        {
+            "id": "prop5",
+            "type": "House",
+            "bedrooms": 5,
+            "price": 1250000,
+            "tenure": "Freehold",
+            "description": "An executive 5-bedroom residence with stunning views. This home boasts an expansive open-plan living area, a private cinema room, and an outdoor swimming pool. Located within the catchment area of highly-rated local grammar schools.",
+            "location": "Kippington Road, Sevenoaks TN13",
+            "picture": "/img/prop5/1.jpg",
+            "images": [
+                "/img/prop5/1.jpg",
+                "/img/prop5/2.jpg",
+                "/img/prop5/3.jpg",
+                "/img/prop5/4.jpg"
+            ],
+            "url": "properties/prop5.html",
+            "added": {
+                "month": "November",
+                "day": 10,
+                "year": 2024
             }
         },
         {
             "id": "prop6",
-            "type": "House",
+            "type": "Flat",
             "bedrooms": 3,
-            "price": 750000,
-            "tenure": "Freehold",
-            "description": "Attractive three bedroom semi-detached family home situated within 0.5 miles of Petts Wood station with fast trains to London and within easy walking distance of local shops, schools, bus routes and National Trust woodland. The property comprises; two receptions, fitted 18'9 x 10'1 kitchen/breakfast room and conservatory. The property also benefits from having a utility room and cloakroom. To the first floor there are three bedrooms and a family bathroom with separate WC. Additional features include double glazing, gas central heating and a well presented interior...",
-            "location": "Petts Wood Road, Petts Wood, Orpington BR5",
-            "picture": "images/prop1pic1small.jpg",
+            "price": 550000,
+            "tenure": "Share of Freehold",
+            "description": "Penthouse 3-bedroom apartment with 360-degree views of the London skyline. Includes a massive private wrap-around balcony, underground parking, and high ceilings with industrial-style finishes.",
+            "location": "Greenwich High Road, London SE10",
+            "picture": "/img/prop6/1.jpg",
             "images": [
-                "img/prop1/pic1.jpg",
-                "img/prop1/pic2.jpg",
-                "img/prop1/pic3.jpg",
-                "img/prop1/pic4.jpg"
+                "/img/prop6/1.jpg",
+                "/img/prop6/2.jpg",
+                "/img/prop6/3.jpg",
+                "/img/prop6/4.jpg"
             ],
-            "url": "properties/prop1.html",
+            "url": "properties/prop6.html",
             "added": {
-                "month": "October",
-                "day": 12,
-                "year": 2013
+                "month": "August",
+                "day": 28,
+                "year": 2024
             }
         },
         {
             "id": "prop7",
-            "type": "Flat",
-            "bedrooms": 3,
-            "price": 250000,
+            "type": "House",
+            "bedrooms": 2,
+            "price": 450000,
             "tenure": "Freehold",
-            "description": "Attractive three bedroom semi-detached family home situated within 0.5 miles of Petts Wood station with fast trains to London and within easy walking distance of local shops, schools, bus routes and National Trust woodland. The property comprises; two receptions, fitted 18'9 x 10'1 kitchen/breakfast room and conservatory. The property also benefits from having a utility room and cloakroom. To the first floor there are three bedrooms and a family bathroom with separate WC. Additional features include double glazing, gas central heating and a well presented interior...",
-            "location": "Petts Wood Road, Petts Wood, Orpington BR5",
-            "picture": "images/prop1pic1small.jpg",
+            "description": "Charming 2-bedroom Victorian cottage full of original features including fireplaces and sash windows. Situated in a peaceful village location with a local pub and primary school just a short walk away.",
+            "location": "Village Green, Chislehurst BR7",
+            "picture": "/img/prop7/1.jpg",
             "images": [
-                "img/prop1/pic1.jpg",
-                "img/prop1/pic2.jpg",
-                "img/prop1/pic3.jpg",
-                "img/prop1/pic4.jpg"
+                "/img/prop7/1.jpg",
+                "/img/prop7/2.jpg",
+                "/img/prop7/3.jpg",
+                "/img/prop7/4.jpg"
             ],
-            "url": "properties/prop1.html",
+            "url": "properties/prop7.html",
             "added": {
-                "month": "October",
-                "day": 12,
-                "year": 2021
+                "month": "February",
+                "day": 15,
+                "year": 2024
             }
         }
     ]
