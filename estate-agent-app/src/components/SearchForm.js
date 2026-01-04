@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
-// Step 7: Importing React Widgets to satisfy the 'enhanced widgets' requirement
-import { DropdownList, NumberPicker, DatePicker } from 'react-widgets';
+import { DropdownList, NumberPicker } from 'react-widgets';
 import "react-widgets/styles.css";
 
 const SearchForm = ({ onSearch }) => {
-    // We initialize states for all 5 search criteria mentioned in the brief
+    /* i'm initializing states for all search criteria mentioned in the brief */
     const [type, setType] = useState('any');
     const [minPrice, setMinPrice] = useState(0);
-    const [maxPrice, setMaxPrice] = useState(2000000);
+    const [maxPrice, setMaxPrice] = useState(100000000); // set to a high enough max for Sri Lanka
     const [minBedrooms, setMinBedrooms] = useState(0);
     const [maxBedrooms, setMaxBedrooms] = useState(10);
     const [postcode, setPostcode] = useState('');
-    const [dateAdded, setDateAdded] = useState(new Date(2022, 0, 1));
+    const [dateAdded, setDateAdded] = useState(null); // start with null for a clean search
 
     const handleSearchClick = (e) => {
         e.preventDefault();
-        // This sends the data "up" to the SearchPage (Step 8)
-        onSearch({ type, minPrice, maxPrice, minBedrooms, maxBedrooms, postcode, dateAdded });
+        /* VIVA: only sending the date if it's actually valid to stop crashes */
+        const finalDate = dateAdded instanceof Date ? dateAdded : null;
+        onSearch({ type, minPrice, maxPrice, minBedrooms, maxBedrooms, postcode, dateAdded: finalDate });
     };
 
     return (
@@ -33,7 +33,7 @@ const SearchForm = ({ onSearch }) => {
                 </div>
 
                 <div className="filter-group">
-                    <label>Price Range (£)</label>
+                    <label>Price Range (Rs.)</label>
                     <div className="picker-row">
                         <NumberPicker value={minPrice} onChange={val => setMinPrice(val)} placeholder="Min" />
                         <NumberPicker value={maxPrice} onChange={val => setMaxPrice(val)} placeholder="Max" />
@@ -55,13 +55,19 @@ const SearchForm = ({ onSearch }) => {
                         className="rw-input custom-text-input"
                         value={postcode}
                         onChange={(e) => setPostcode(e.target.value)}
-                        placeholder="e.g. BR5"
+                        placeholder="e.g. Colombo 03"
                     />
                 </div>
 
                 <div className="filter-group">
                     <label>Added After</label>
-                    <DatePicker value={dateAdded} onChange={val => setDateAdded(val)} />
+                    <input
+                        type="date"
+                        className="rw-input custom-text-input"
+                        /* safely converting the date object to string for the input */
+                        value={dateAdded ? dateAdded.toISOString().split('T')[0] : ''}
+                        onChange={e => setDateAdded(e.target.value ? new Date(e.target.value) : null)}
+                    />
                 </div>
 
                 <button type="submit" className="search-submit-btn">Search Properties</button>

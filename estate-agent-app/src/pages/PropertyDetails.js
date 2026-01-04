@@ -5,12 +5,14 @@ import 'react-tabs/style/react-tabs.css';
 import propertyData from '../data/properties.json';
 
 const PropertyDetails = () => {
+    /* getting the id from the url so we know which house to show */
     const { id } = useParams();
     const property = propertyData.properties.find(p => p.id === id);
 
-    // State to handle which image is currently being viewed in the large hero area
+    /* state to swap the big main photo when someone clicks a thumbnail */
     const [mainImage, setMainImage] = useState(property ? property.picture : '');
 
+    /* quick check just in case the id doesn't match anything in the json */
     if (!property) return <div className="search-page"><h2>Property not found</h2></div>;
 
     return (
@@ -21,16 +23,17 @@ const PropertyDetails = () => {
             </header>
 
             <div className="details-layout">
-                {/* MULTIMEDIA SECTION: Hero image + Thumbnails */}
+                {/* GALLERY: showing the big image and then mapping through the others below it */}
                 <section className="multimedia-section">
                     <img src={mainImage} alt="Property" className="hero-image" />
                     <div className="thumbnail-grid">
-                        {/* If you added the images array to JSON, map through it here */}
+                        {/* looping through the images array from the json file */}
                         {property.images && property.images.map((img, index) => (
                             <img
                                 key={index}
                                 src={img}
                                 alt={`View ${index}`}
+                                /* adding 'active' class so we can highlight the current thumb in css */
                                 className={mainImage === img ? "thumb active" : "thumb"}
                                 onClick={() => setMainImage(img)}
                             />
@@ -38,7 +41,7 @@ const PropertyDetails = () => {
                     </div>
                 </section>
 
-                {/* ORGANIZATION SECTION: Tabs for Description/Floorplan/Map */}
+                {/* INFO SECTION: using tabs to keep the page from getting too long */}
                 <section className="info-tabs-section">
                     <h2 className="details-price">£{property.price.toLocaleString()}</h2>
 
@@ -69,7 +72,7 @@ const PropertyDetails = () => {
 
                         <TabPanel>
                             <div className="tab-content map-container">
-                                {/* The 'q=' part of the URL is where we inject the dynamic location */}
+                                {/* injecting the location string into the google maps search query */}
                                 <iframe
                                     title="Property Location"
                                     width="100%"
