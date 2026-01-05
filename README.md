@@ -1,2 +1,2 @@
 # Advance_Client_Side_CW2
-Repo for CW2 of Advance Client Side Module
+GitHub Pages : https://kravenfr.github.io/Advance_Client_Side_CW2
