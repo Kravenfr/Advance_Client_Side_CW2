@@ -17,19 +17,19 @@ const SearchPage = () => {
 
     const handleSearch = (criteria) => {
         const results = propertyData.properties.filter(prop => {
-            /* VIVA: parsing the JSON date manually to ensure it works on all browsers */
+            /* running the JSON date manually to ensure it works on all browsers. used a bit of AI to get over the last Min Crashes */
             const months = {
                 January: 0, February: 1, March: 2, April: 3, May: 4, June: 5,
                 July: 6, August: 7, September: 8, October: 9, November: 10, December: 11
             };
             const propDate = new Date(prop.added.year, months[prop.added.month], prop.added.day);
 
-            const matchType = criteria.type === 'any' || prop.type === criteria.type;
+            const matchType = criteria.type === 'Any' || prop.type === criteria.type;
             const matchPrice = prop.price >= criteria.minPrice && prop.price <= criteria.maxPrice;
             const matchBedrooms = prop.bedrooms >= criteria.minBedrooms && prop.bedrooms <= criteria.maxBedrooms;
             const matchPostcode = prop.location.toLowerCase().includes(criteria.postcode.toLowerCase());
 
-            /* SAFETY: if the user clears the date widget, we don't filter by date at all */
+            /* if the user clears the date widget the filter will not use date at all */
             let matchDate = true;
             if (criteria.dateAdded && !isNaN(criteria.dateAdded.getTime())) {
                 matchDate = propDate >= criteria.dateAdded;

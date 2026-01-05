@@ -3,6 +3,7 @@
         {
             "id": "prop1",
             "type": "House",
+            "floorplan": "/img/floorplan/1.png",
             "bedrooms": 3,
             "price": 45000000,
             "tenure": "Freehold",
@@ -25,6 +26,7 @@
         {
             "id": "prop2",
             "type": "Flat",
+            "floorplan": "/img/floorplan/2.jpg",
             "bedrooms": 2,
             "price": 32000000,
             "tenure": "Leasehold",
@@ -47,6 +49,7 @@
         {
             "id": "prop3",
             "type": "House",
+            "floorplan": "/img/floorplan/3.jpg",
             "bedrooms": 4,
             "price": 65000000,
             "tenure": "Freehold",
@@ -69,6 +72,7 @@
         {
             "id": "prop4",
             "type": "Flat",
+            "floorplan": "/img/floorplan/4.jpg",
             "bedrooms": 1,
             "price": 18000000,
             "tenure": "Leasehold",
@@ -91,6 +95,7 @@
         {
             "id": "prop5",
             "type": "House",
+            "floorplan": "/img/floorplan/5.png",
             "bedrooms": 5,
             "price": 95000000,
             "tenure": "Freehold",
@@ -113,6 +118,7 @@
         {
             "id": "prop6",
             "type": "Flat",
+            "floorplan": "/img/floorplan/6.jpg",
             "bedrooms": 3,
             "price": 55000000,
             "tenure": "Share of Freehold",
@@ -135,6 +141,7 @@
         {
             "id": "prop7",
             "type": "House",
+            "floorplan": "/img/floorplan/7.jpg",
             "bedrooms": 2,
             "price": 25000000,
             "tenure": "Freehold",

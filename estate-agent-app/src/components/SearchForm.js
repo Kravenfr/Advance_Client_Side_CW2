@@ -3,10 +3,10 @@ import { DropdownList, NumberPicker } from 'react-widgets';
 import "react-widgets/styles.css";
 
 const SearchForm = ({ onSearch }) => {
-    /* i'm initializing states for all search criteria mentioned in the brief */
-    const [type, setType] = useState('any');
+    /*initializing states for all search criteria mentioned in the brief */
+    const [type, setType] = useState('Any');
     const [minPrice, setMinPrice] = useState(0);
-    const [maxPrice, setMaxPrice] = useState(100000000); // set to a high enough max for Sri Lanka
+    const [maxPrice, setMaxPrice] = useState(100000000);
     const [minBedrooms, setMinBedrooms] = useState(0);
     const [maxBedrooms, setMaxBedrooms] = useState(10);
     const [postcode, setPostcode] = useState('');
@@ -14,7 +14,7 @@ const SearchForm = ({ onSearch }) => {
 
     const handleSearchClick = (e) => {
         e.preventDefault();
-        /* VIVA: only sending the date if it's actually valid to stop crashes */
+        /*sending the date if it's actually valid to stop crashes */
         const finalDate = dateAdded instanceof Date ? dateAdded : null;
         onSearch({ type, minPrice, maxPrice, minBedrooms, maxBedrooms, postcode, dateAdded: finalDate });
     };
@@ -26,7 +26,7 @@ const SearchForm = ({ onSearch }) => {
                 <div className="filter-group">
                     <label>Property Type</label>
                     <DropdownList
-                        data={['any', 'House', 'Flat']}
+                        data={['Any', 'House', 'Flat']}
                         value={type}
                         onChange={val => setType(val)}
                     />

@@ -65,7 +65,11 @@ const PropertyDetails = () => {
                         <TabPanel>
                             <div className="tab-content">
                                 <div className="placeholder-box">
-                                    <p>Floorplan Image (Multimedia Requirement)</p>
+                                    <img
+                                        src={property.floorplan}
+                                        alt="Property Floorplan"
+                                        style={{ width: '100%', maxWidth: '600px', filter: 'grayscale(100%)' }}
+                                    />
                                 </div>
                             </div>
                         </TabPanel>
