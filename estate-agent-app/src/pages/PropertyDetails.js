@@ -43,7 +43,7 @@ const PropertyDetails = () => {
 
                 {/* INFO SECTION: using tabs to keep the page from getting too long */}
                 <section className="info-tabs-section">
-                    <h2 className="details-price">£{property.price.toLocaleString()}</h2>
+                    <h2 className="details-price">Rs.{property.price.toLocaleString()}</h2>
 
                     <Tabs>
                         <TabList>
@@ -82,8 +82,7 @@ const PropertyDetails = () => {
                                     width="100%"
                                     height="450"
                                     style={{ border: 0, borderRadius: '8px' }}
-                                    src={`https://www.google.com/maps/embed/v1/place?key=YOUR_FREE_EMBED_URL_OR_SEARCH_QUERY&q=${encodeURIComponent(property.location)}&output=embed`}
-                                    allowFullScreen
+                                    src={`https://maps.google.com/maps?q=${encodeURIComponent(property.location)}&t=&z=13&ie=UTF8&iwloc=&output=embed`} allowFullScreen
                                     loading="lazy"
                                 ></iframe>
 

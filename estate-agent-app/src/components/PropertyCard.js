@@ -17,7 +17,7 @@ const PropertyCard = ({ property, index }) => {
                     <img src={property.picture} alt={property.type} />
 
                     <div className="property-info">
-                        <h4>{property.type} - £{property.price.toLocaleString()}</h4>
+                        <h4>{property.type} - Rs.{property.price.toLocaleString()}</h4>
                         <p className="location-text">{property.location}</p>
 
                         <Link to={`/property/${property.id}`} className="details-btn">
