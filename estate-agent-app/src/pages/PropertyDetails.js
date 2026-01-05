@@ -25,13 +25,13 @@ const PropertyDetails = () => {
             <div className="details-layout">
                 {/* GALLERY: showing the big image and then mapping through the others below it */}
                 <section className="multimedia-section">
-                    <img src={mainImage} alt="Property" className="hero-image" />
+                    <img src={process.env.PUBLIC_URL + mainImage} alt="Property" className="hero-image" />
                     <div className="thumbnail-grid">
                         {/* looping through the images array from the json file */}
                         {property.images && property.images.map((img, index) => (
                             <img
                                 key={index}
-                                src={img}
+                                src={process.env.PUBLIC_URL + img}
                                 alt={`View ${index}`}
                                 /* adding 'active' class so we can highlight the current thumb in css */
                                 className={mainImage === img ? "thumb active" : "thumb"}
@@ -66,7 +66,7 @@ const PropertyDetails = () => {
                             <div className="tab-content">
                                 <div className="placeholder-box">
                                     <img
-                                        src={property.floorplan}
+                                        src={process.env.PUBLIC_URL + property.floorplan}
                                         alt="Property Floorplan"
                                         style={{ width: '100%', maxWidth: '600px', filter: 'grayscale(100%)' }}
                                     />

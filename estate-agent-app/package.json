@@ -1,6 +1,7 @@
 {
   "name": "estate-agent-app",
   "version": "0.1.0",
+  "homepage": "https://Kravenfr.github.io/Advance_Client_Side_CW2",
   "private": true,
   "dependencies": {
     "@hello-pangea/dnd": "^18.0.1",
@@ -9,9 +10,10 @@
     "@testing-library/react": "^16.3.1",
     "@testing-library/user-event": "^13.5.0",
     "framer-motion": "^12.23.26",
+    "gh-pages": "^6.3.0",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
-    "react-router-dom": "^7.11.0",
+    "react-router-dom": "^6.30.2",
     "react-scripts": "5.0.1",
     "react-tabs": "^6.1.0",
     "react-widgets": "^5.8.6",
@@ -21,7 +23,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -40,5 +44,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
   }
 }

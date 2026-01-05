@@ -14,7 +14,7 @@ const PropertyCard = ({ property, index }) => {
                     {...provided.dragHandleProps}
                 >
                     {/* standardizing image ratio in CSS via the property card class */}
-                    <img src={property.picture} alt={property.type} />
+                    <img src={process.env.PUBLIC_URL + property.picture} alt={property.type} />
 
                     <div className="property-info">
                         <h4>{property.type} - Rs.{property.price.toLocaleString()}</h4>
